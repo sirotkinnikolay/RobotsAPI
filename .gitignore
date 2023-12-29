@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
 # C extensions
 *.so
 
@@ -18,6 +17,7 @@ lib/
 lib64/
 parts/
 sdist/
+robots_venv/
 var/
 wheels/
 share/python-wheels/
