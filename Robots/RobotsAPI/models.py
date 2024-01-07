@@ -69,3 +69,15 @@ class WaitingList(models.Model):
 
     def __str__(self):
         return self.user_waiting.email
+
+
+class Url(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Действие')
+    address = models.CharField(max_length=200, verbose_name='Адресс')
+
+    class Meta:
+        verbose_name = 'Ссылка'
+        verbose_name_plural = 'Ссылки'
+
+    def __str__(self):
+        return self.title

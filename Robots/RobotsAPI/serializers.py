@@ -27,3 +27,11 @@ class WaitingListSerializer(ModelSerializer):
         user = self.context['request'].user
         validated_data['user_waiting'] = user
         return WaitingList.objects.create(**validated_data)
+
+
+class UrlSerializer(ModelSerializer):
+    id = serializers.HiddenField(default=None)
+
+    class Meta:
+        model = Url
+        fields = "__all__"

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from RobotsAPI.models import User,  RobotsModels, Robot, WaitingList
+from RobotsAPI.models import User, RobotsModels, Robot, WaitingList, Url
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 
@@ -24,5 +24,11 @@ class WaitingListAdmin(admin.ModelAdmin):
 
 admin.site.register(WaitingList, WaitingListAdmin)
 
+
+class UrlAdmin(admin.ModelAdmin):
+    list_display = ['title', 'address']
+
+
+admin.site.register(Url, UrlAdmin)
 
 admin.site.register(User, UserAdmin)
