@@ -54,7 +54,7 @@ class Robot(models.Model):
         verbose_name_plural = 'Роботы'
 
     def __str__(self):
-        return self.rob_model
+        return str(self.created)
 
 
 class WaitingList(models.Model):
