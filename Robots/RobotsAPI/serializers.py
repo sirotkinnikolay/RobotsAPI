@@ -4,6 +4,8 @@ from rest_framework import serializers
 
 
 class RobotSerializer(ModelSerializer):
+    availability = serializers.HiddenField(default=True)
+
     class Meta:
         model = Robot
         fields = "__all__"
@@ -13,7 +15,7 @@ class RobotSerializer(ModelSerializer):
         if len(RobotsModels.objects.filter(robot_model=validated_model)) != 0:
             return Robot.objects.create(**validated_data)
         else:
-            raise Exception(f"Модели: {validated_model} нет в базе")
+            raise ValueError(f"Модели: {validated_model} нет в базе")
 
 
 class WaitingListSerializer(ModelSerializer):

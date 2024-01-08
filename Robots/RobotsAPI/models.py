@@ -48,6 +48,7 @@ class Robot(models.Model):
     model = models.CharField(max_length=200, verbose_name='модель')
     version = models.CharField(max_length=200, verbose_name='версия')
     created = models.DateField(auto_now_add=True, verbose_name='дата создания')
+    availability = models.BooleanField(default=True, verbose_name='наличие')
 
     class Meta:
         verbose_name = 'Робот'

@@ -12,7 +12,7 @@ admin.site.register(RobotsModels, RobotsModelsAdmin)
 
 
 class RobotAdmin(admin.ModelAdmin):
-    list_display = ['model', 'version', 'created']
+    list_display = ['model', 'version', 'created', 'availability']
 
 
 admin.site.register(Robot, RobotAdmin)
