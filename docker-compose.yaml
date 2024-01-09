@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  web:
+    restart: always
+    build: ./Robots
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Robots/:/usr/src/app/
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Robots/.env
+  db:
+    restart: always
+    container_name: db
+    image: postgres:13-alpine
+    env_file:
+      - ./Robots/.env
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
