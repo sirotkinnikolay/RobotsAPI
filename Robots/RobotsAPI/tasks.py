@@ -3,6 +3,7 @@ from celery import Celery
 import smtplib
 import logging
 from celery.utils.log import get_task_logger
+from decouple import config
 
 app = Celery('myapp', broker='redis://localhost:6379/0')
 
@@ -16,8 +17,9 @@ logger.addHandler(handler_c)
 
 @app.task
 def send_mail_celery(email_ad, text):
-    user = 'sirotos@yandex.ru'
-    passwd = 'nikola.sirotkin.yandex'
+
+    user = config("USER_SMTP_EMAIL")
+    passwd = config("USER_SMTP_PASS")
 
     logger.info(f'Отправлен email на адрес: {email_ad} с текстом: {text}')
 

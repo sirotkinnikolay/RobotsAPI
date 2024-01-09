@@ -13,6 +13,7 @@ def send_email_on_post_save(sender, instance, created, **kwargs):
         result = WaitingList.objects.filter(model_robot_wait=rob_mod, version_robot_wait=rob_ver).order_by('id')
         if len(result) != 0:
             first_wait_client = result.first().user_waiting
+            result.first().delete()
             text_for_client = (
                 f'Добрый день.Недавно вы интересовались нашим роботом модели {rob_mod}, версии {rob_ver}.'
                 f'Этот робот теперь в наличии. Если вам подходит этот вариант - пожалуйста, свяжитесь с нами')
