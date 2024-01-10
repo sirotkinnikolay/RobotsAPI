@@ -10,6 +10,25 @@ services:
       - "8000:8000"
     env_file:
       - ./Robots/.env
+    environment:
+      - DEBUG=1
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+  celery:
+    build: ./Robots
+    command: celery -A Robots worker -l INFO
+    volumes:
+      - ./Robots/:/usr/src/app/
+    depends_on:
+      - web
+      - redis
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
   db:
     restart: always
     container_name: db
@@ -20,3 +39,4 @@ services:
       - ./postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
+
