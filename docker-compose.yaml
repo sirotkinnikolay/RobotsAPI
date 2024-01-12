@@ -35,3 +35,10 @@ services:
       - ./postgres_data:/var/lib/postgresql/data/
     ports:
       - "5455:5432"
+  django_tests:
+    build: ./Robots
+    command: python manage.py test
+    volumes:
+      - ./Robots/:/usr/src/app/
+    depends_on:
+      - web
