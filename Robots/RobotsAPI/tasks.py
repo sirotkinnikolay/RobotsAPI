@@ -5,7 +5,7 @@ import logging
 from celery.utils.log import get_task_logger
 from decouple import config
 
-app = Celery('myapp', broker='redis://localhost:6379/0')
+app = Celery('myapp', broker='redis://redis:6379/0')
 
 logger = get_task_logger('celery_logging')
 logger.setLevel(logging.INFO)

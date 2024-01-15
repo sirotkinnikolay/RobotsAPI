@@ -5,3 +5,13 @@ celery_logging 2024-01-09 16:28:55,943 INFO Отправлен email на адр
 celery_logging 2024-01-09 16:31:45,781 INFO Отправлен email на адрес: user1@mail.ru с текстом: Добрый день.Робот модели R2, версии R4 в наличии. Пожалуйста, свяжитесь с нами для его приобретения
 celery_logging 2024-01-10 22:14:23,159 INFO Отправлен email на адрес: admin@mail.ru с текстом: Добрый день.Робот модели R2, версии W6 в наличии. Пожалуйста, свяжитесь с нами для его приобретения
 celery_logging 2024-01-12 15:46:09,458 INFO Отправлен email на адрес: admin@mail.ru с текстом: Добрый день.Робот модели R2, версии N3 в наличии. Пожалуйста, свяжитесь с нами для его приобретения
+celery_logging 2024-01-15 21:39:19,315 INFO Отправлен email на адрес: admin@mail.ru с текстом: Добрый день.Недавно вы интересовались нашим роботом модели R2, версии W6.Этот робот теперь в наличии. Если вам подходит этот вариант - пожалуйста, свяжитесь с нами
+celery_logging 2024-01-15 21:41:16,969 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:44:25,347 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:44:25,360 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:44:26,927 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:47:04,381 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:51:32,254 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:51:32,284 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:51:33,013 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text
+celery_logging 2024-01-15 21:51:34,301 INFO Отправлен email на адрес: test@mail.ru с текстом: test_text

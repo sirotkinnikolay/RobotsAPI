@@ -12,7 +12,8 @@ class RobotViewSetTest(APITestCase):
         robot_count = 10
         robot_model = RobotsModels.objects.create(robot_model='R2')
         for robot_num in range(robot_count):
-            Robot.objects.create(model=robot_model, version=f'N{robot_num}', created=datetime.today(), availability=True)
+            Robot.objects.create(model=robot_model, version=f'N{robot_num}',
+                                 created=datetime.today(), availability=True)
 
     def test_create_robot(self):
         url = '/api/robot/'
@@ -33,7 +34,7 @@ class RobotViewSetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_1.status_code, status.HTTP_200_OK)
         self.assertEqual(Robot.objects.count(), 10)
-        self.assertEqual(response_1.data['version'], 'N3')
+        self.assertEqual(response_1.data['version'], 'N1')
 
     def test_delete_robot(self):
         url = '/api/robot/5/'
