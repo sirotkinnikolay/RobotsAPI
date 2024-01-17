@@ -10,10 +10,10 @@ class CeleryTestCase(TestCase):
 
     def test_send_mail_celery(self):
         # TODO: ОШИБКА -------> assert 'celery.ping' in app.tasks
-        with start_worker(app=self.app):
+        with start_worker(app=self.app, perform_ping_check=False):
             result = send_mail_celery.apply_async(args=["test@mail.ru", "test_text"])
             result.get()
-            print(result.status)
+        self.assertTrue(result.successful())
 
 
 # Теперь вы можете добавить свои утверждения, чтобы проверить результат
