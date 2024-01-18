@@ -15,8 +15,8 @@ handler_c.setFormatter(formatter_c)
 logger.addHandler(handler_c)
 
 
-@app.task
-def send_mail_celery(email_ad, text):
+@app.task(bind=True)
+def send_mail_celery(self, email_ad, text):
 
     user = config("USER_SMTP_EMAIL")
     passwd = config("USER_SMTP_PASS")

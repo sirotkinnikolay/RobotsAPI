@@ -42,3 +42,4 @@ services:
       - ./Robots/:/usr/src/app/
     depends_on:
       - web
+      - celery

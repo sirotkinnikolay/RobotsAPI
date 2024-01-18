@@ -5,7 +5,6 @@ from RobotsAPI.tasks import send_mail_celery
 from django.core.exceptions import ObjectDoesNotExist
 
 
-# TODO выключить сигнал в test_serializers, потому что отправляется из тестов.
 @receiver(post_save, sender=Robot)
 def send_email_on_post_save(sender, instance, created, **kwargs):
     try:

@@ -1,24 +1,20 @@
 from django.test import TestCase
-from celery.contrib.testing.worker import start_worker
-from celery import Celery
 from RobotsAPI.tasks import send_mail_celery
+from Robots.celery import app
+from celery.result import AsyncResult
 
 
 class CeleryTestCase(TestCase):
-    def setUp(self):
-        self.app = Celery('myapp', broker='memory://', backend='memory://')
 
-    def test_send_mail_celery(self):
-        # TODO: ОШИБКА -------> assert 'celery.ping' in app.tasks
-        with start_worker(app=self.app, perform_ping_check=False):
-            result = send_mail_celery.apply_async(args=["test@mail.ru", "test_text"])
-            result.get()
-        self.assertTrue(result.successful())
+    def test_send_mail(self):
+        res = send_mail_celery.delay(email_ad='test@mail.ru', text='test_text')
+        inspect_workers = app.control.inspect()
+
+        self.assertEqual(next(iter(next(iter((inspect_workers.registered().values()))))),
+                         'RobotsAPI.tasks.send_mail_celery')
+
+        self.assertIsNotNone(res.id)
+        self.assertEqual(AsyncResult(res.id).state, 'SUCCESS')
 
 
-# Теперь вы можете добавить свои утверждения, чтобы проверить результат
-# Например, можно проверить логирование или что-то еще.
-# Пример:
-# self.assertEqual(ожидаемый результат, фактический результат)
-# self.assertIn("ожидаемая строка в логах", логи)
 
