@@ -2,14 +2,29 @@ from django.test import TestCase
 from RobotsAPI.models import Robot, RobotsModels
 from datetime import datetime
 from django.core.exceptions import ValidationError
+import cProfile
+import pstats
+from io import StringIO
+import sys
 
 
 class RobotModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        pr = cProfile.Profile()
+        pr.enable()
+
         robot_model = RobotsModels.objects.create(robot_model='R2')
         Robot.objects.create(model=robot_model, version='N2', created=datetime.today(), availability=True)
+
+        pr.disable()
+        s = StringIO()
+        sortby = 'cumulative'
+        ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+        ps.print_stats()
+        with open('profile.txt', 'a') as f:
+            f.write(s.getvalue())
 
     def test_robot_model_values(self):
         robot = Robot.objects.get(id=1)
@@ -32,7 +47,5 @@ class RobotModelTest(TestCase):
             robot = Robot.objects.get(id=1)
             robot.availability = 12345
             robot.save()
-
-
 
 
