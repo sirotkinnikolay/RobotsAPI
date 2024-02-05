@@ -5,7 +5,7 @@ import logging
 from celery.utils.log import get_task_logger
 from decouple import config
 
-app = Celery('myapp', broker='redis://localhost:6379/0')
+app = Celery('myapp', broker='redis://redis:6379/0')
 
 logger = get_task_logger('celery_logging')
 logger.setLevel(logging.INFO)
@@ -15,8 +15,8 @@ handler_c.setFormatter(formatter_c)
 logger.addHandler(handler_c)
 
 
-@app.task
-def send_mail_celery(email_ad, text):
+@app.task(bind=True)
+def send_mail_celery(self, email_ad, text):
 
     user = config("USER_SMTP_EMAIL")
     passwd = config("USER_SMTP_PASS")
