@@ -3,6 +3,7 @@ branch = True
 omit =
     /home/vboxuser/PycharmProjects/Robots/RobotsAPI/Robots/RobotsAPI/migrations/*,
     /home/vboxuser/PycharmProjects/Robots/RobotsAPI/Robots/RobotsAPI/tests/*,
-    /home/vboxuser/PycharmProjects/Robots/RobotsAPI/Robots/Robots/wsgi.py/*
+    /home/vboxuser/PycharmProjects/Robots/RobotsAPI/Robots/Robots/wsgi.py/*,
+    /home/vboxuser/PycharmProjects/Robots/RobotsAPI/Robots/Robots/asgi.py/*
 
 
