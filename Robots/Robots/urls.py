@@ -15,4 +15,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/drf-auth/', include('rest_framework.urls')),
     path('api/stat/', RobotStatisticsViewSet.as_view()),
+    path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
