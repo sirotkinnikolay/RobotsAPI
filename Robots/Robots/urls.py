@@ -4,6 +4,7 @@ from rest_framework import routers
 from RobotsAPI.views import RobotViewSet, WaitingListViewSet, RobotStatisticsViewSet, UrlViewSet
 from django.conf import settings
 from django.conf.urls.static import static
+from oauth2_provider.views import TokenView, AuthorizationView
 
 router = routers.SimpleRouter()
 router.register(r'robot', RobotViewSet)
@@ -15,5 +16,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/drf-auth/', include('rest_framework.urls')),
     path('api/stat/', RobotStatisticsViewSet.as_view()),
-    path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]

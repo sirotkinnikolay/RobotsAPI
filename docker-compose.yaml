@@ -3,7 +3,11 @@ services:
   web:
     restart: always
     build: ./Robots
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+        sh -c "python manage.py makemigrations &&
+        python manage.py migrate && 
+        python manage.py migrate oauth2_provider &&
+        python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./Robots/:/usr/src/app/
     ports:

@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'Robots.urls'
@@ -134,18 +133,28 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = f"redis://{config('REDIS_HOST')}:{config('REDIS_PORT')}/0"
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
-# rest framework settings
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    ),
-
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'},
+    'AUTHORIZATION_CODE_EXPIRE_SECONDS': 60,
+    'CLIENT_ID_GENERATOR_CLASS': 'oauth2_provider.generators.ClientIdGenerator',
+    'CLIENT_SECRET_GENERATOR_CLASS': 'oauth2_provider.generators.ClientSecretGenerator',
+    'OAUTH2_SERVER_CLASS': 'oauth2_provider.oauth2_server.Server',
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 60 * 60 * 24,
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
+    'REFRESH_TOKEN_EXPIRE_SECONDS': 60 * 60 * 24 * 2,
+    'ALLOWED_REDIRECT_URL_SCHEMES': ['http', 'https', 'app', 'custom-scheme'],
+    'READ_SCOPE': 'read',
+    'WRITE_SCOPE': 'write',
+    'ALLOWED_REDIRECT_URI_SCHEMES': ['http', 'https', 'app', 'custom-scheme'],
+    'RESOURCE_SERVER_INTROSPECTION_URL': 'https://resource.server/introspection',
 }
 
 # Oauth settings
 OAUTH2_PROVIDER = {
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'},
+}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
 }

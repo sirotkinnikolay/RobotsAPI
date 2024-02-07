@@ -6,11 +6,13 @@ from rest_framework.permissions import BasePermission, IsAdminUser, DjangoModelP
 from rest_framework.views import APIView
 from RobotsAPI.excel_file_generate import exel_generate
 from rest_framework.response import Response
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 
 class RobotViewSet(ModelViewSet):
     queryset = Robot.objects.all()
     serializer_class = RobotSerializer
+    permission_classes = [TokenHasReadWriteScope]
 
 
 class WaitingListViewSet(ModelViewSet):

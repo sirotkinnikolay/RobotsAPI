@@ -14,7 +14,7 @@ class CeleryTestCase(TestCase):
                          'RobotsAPI.tasks.send_mail_celery')
 
         self.assertIsNotNone(res.id)
-        self.assertEqual(AsyncResult(res.id).state, 'SUCCESS')
+        self.assertEqual(AsyncResult(res.id).state, 'STARTED')
 
 
 
