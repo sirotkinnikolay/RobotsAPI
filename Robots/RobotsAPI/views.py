@@ -7,12 +7,14 @@ from rest_framework.views import APIView
 from RobotsAPI.excel_file_generate import exel_generate
 from rest_framework.response import Response
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
+from rest_framework import permissions
 
 
 class RobotViewSet(ModelViewSet):
     queryset = Robot.objects.all()
     serializer_class = RobotSerializer
-    permission_classes = [TokenHasReadWriteScope]
+    required_scopes = ['groups']
+    permission_classes = [permissions.IsAuthenticated,TokenHasReadWriteScope]
 
 
 class WaitingListViewSet(ModelViewSet):
